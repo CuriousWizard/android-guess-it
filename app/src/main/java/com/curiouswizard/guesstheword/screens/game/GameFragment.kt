@@ -49,20 +49,24 @@ class GameFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
-        binding.correctButton.setOnClickListener {
-            viewModel.onCorrect()
-        }
-        binding.skipButton.setOnClickListener {
-            viewModel.onSkip()
-        }
+        binding.gameViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+//        No longer needed these lines because we set the onClickListener in game_fragment.xml
+//        binding.correctButton.setOnClickListener {
+//            viewModel.onCorrect()
+//        }
+//        binding.skipButton.setOnClickListener {
+//            viewModel.onSkip()
+//        }
 
         /** Methods for updating the UI **/
         viewModel.score.observe(viewLifecycleOwner, { newScore ->
-            binding.wordText.text = newScore.toString()
+            binding.scoreText.text = newScore.toString()
         })
 
         viewModel.word.observe(viewLifecycleOwner, { newWord ->
-            binding.scoreText.text = newWord
+            binding.wordText.text = newWord
         })
 
         viewModel.currentTime.observe(viewLifecycleOwner, { newTime ->
