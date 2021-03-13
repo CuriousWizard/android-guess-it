@@ -17,7 +17,6 @@
 package com.curiouswizard.guesstheword.screens.game
 
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,10 +68,12 @@ class GameFragment : Fragment() {
 //        viewModel.score.observe(viewLifecycleOwner, { newScore ->
 //            binding.scoreText.text = newScore.toString()
 //        })
-
-        viewModel.currentTime.observe(viewLifecycleOwner, { newTime ->
-            binding.timerText.text = DateUtils.formatElapsedTime(newTime)
-        })
+//
+//        Moved this method to GameViewModel and used Transformation.map() to get
+//        LiveData<String> from LiveData<Long>
+//        viewModel.currentTime.observe(viewLifecycleOwner, { newTime ->
+//            binding.timerText.text = DateUtils.formatElapsedTime(newTime)
+//        })
 
         viewModel.eventGameFinish.observe(viewLifecycleOwner, { hasFinished ->
             if (hasFinished) {
