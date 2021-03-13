@@ -52,7 +52,7 @@ class GameFragment : Fragment() {
         binding.gameViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-//        No longer needed these lines because we set the onClickListener in game_fragment.xml
+//        No longer need these lines because we set the onClickListener in game_fragment.xml
 //        binding.correctButton.setOnClickListener {
 //            viewModel.onCorrect()
 //        }
@@ -60,14 +60,15 @@ class GameFragment : Fragment() {
 //            viewModel.onSkip()
 //        }
 
-        /** Methods for updating the UI **/
-        viewModel.score.observe(viewLifecycleOwner, { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
-
-        viewModel.word.observe(viewLifecycleOwner, { newWord ->
-            binding.wordText.text = newWord
-        })
+//        /** Methods for updating the UI **/
+//        Due to LiveData Data Binding, we don't need to use observe method to update text
+//        viewModel.word.observe(viewLifecycleOwner, { newWord ->
+//            binding.wordText.text = newWord
+//        })
+//
+//        viewModel.score.observe(viewLifecycleOwner, { newScore ->
+//            binding.scoreText.text = newScore.toString()
+//        })
 
         viewModel.currentTime.observe(viewLifecycleOwner, { newTime ->
             binding.timerText.text = DateUtils.formatElapsedTime(newTime)
